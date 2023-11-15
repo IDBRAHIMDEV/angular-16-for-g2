@@ -1,0 +1,31 @@
+
+<div class="row my-5">
+    <div class="col-6">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="col-6 text-end"><button class="btn btn-sm btn-success">Show</button></div>
+</div>
+
+<div class="row my-4">
+    <div class="col-6 mx-auto">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let course of listCourses">
+                {{ course.label }}
+                <div class="my-2 text-end">
+                    <button class="btn-sm me-2 btn btn-warning">Edit</button>
+                    <button class="btn-sm btn btn-danger">Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+<!-- <img [src]="image" [alt]="title">
+
+<input type="url" [(ngModel)]="image" placeholder="Put the Image URL"> <br>
+
+<button (click)="changeTheImage()" class="btn btn-info">Change Image</button> -->
