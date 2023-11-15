@@ -1,7 +1,10 @@
-<div class="card my-3">
-    <!-- <img class="card-img-top" src="holder.js/100x180/" alt="Title"> -->
+<div class="card">
+                    
     <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">Text</p>
+        <h4 class="card-title">{{ course.label }}</h4>
+        <div class="card-text">
+            <button class="btn-sm me-2 btn btn-warning">Edit</button>
+            <button (click)="destroyCourse()" class="btn-sm btn btn-danger">Delete</button>
+        </div>
     </div>
 </div>

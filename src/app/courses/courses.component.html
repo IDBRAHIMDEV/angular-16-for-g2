@@ -3,13 +3,28 @@
     <div class="col-6">
         <h1>{{ title }}</h1>
     </div>
-    <div class="col-6 text-end"><button class="btn btn-sm btn-success">Show</button></div>
+    <div class="col-6 text-end">
+        <button (click)="toggleForm()" class="btn btn-sm" [ngClass]="{
+            'btn-success': !showForm,
+            'btn-danger': showForm
+        }">
+            <i 
+            [ngStyle]="{
+                fontSize: showForm ? '50px' : '30px',
+                color: showForm ? 'green' : 'yellow'
+            }"
+            [ngClass]="{
+                'fa-angle-double-down': !showForm,
+                'fa-angle-double-up': showForm
+            }" class="fa fa-3"></i>
+        </button>
+    </div>
 </div>
 
 <div class="row my-4">
     <div class="col-6 mx-auto">
 
-        <div class="my-2">
+        <div class="my-2" *ngIf="showForm">
             <input [(ngModel)]="myCourse.label" type="text" class="form-control" placeholder="Tape a label of a course">
             <div class="d-grid my-2">
                 <button *ngIf="editMode" (click)="updateCourse()" class="btn btn-warning">Update a Course</button>
@@ -17,7 +32,16 @@
             </div>
         </div>
 
-        <ul class="list-group">
+        <div class="my-3">
+            <button (click)="toggleList(true)" class="btn btn-sm btn-primary me-2">
+                <i class="fa fa-th-list"></i>
+            </button>
+            <button (click)="toggleList(false)" class="btn btn-sm btn-primary">
+                <i class="fa fa-th-large"></i>
+            </button>
+        </div>
+
+        <ul class="list-group" *ngIf="list">
             <li class="list-group-item" *ngFor="let course of listCourses">
                 {{ course.label }}
                 <p>{{ course.id }}</p>
@@ -27,6 +51,17 @@
                 </div>
             </li>
         </ul>
+
+        <div class="row my-3" *ngIf="!list">
+            <div class="col-6" *ngFor="let course of listCourses">
+               <app-card 
+                    [course]="course"
+                    (deleteCourseFromChild)="deleteCourse($event)"
+                    >
+                </app-card>
+            </div>
+        </div>
+
     </div>
 </div>
 

@@ -9,7 +9,9 @@ import Swal from 'sweetalert2'
 })
 export class CoursesComponent {
   
+  list: boolean = true
   editMode: boolean = false
+  showForm: boolean = false
   title: string = "Welcome to our Courses"
   image: string = "https://www.blog.brightcoding.dev/wp-content/uploads/2023/10/Exploring-Next-Auth-in-Nextjs-A-Comprehensive-Guide-Bright-Coding-Mohamed-Idbrahim.png"
   
@@ -72,6 +74,10 @@ export class CoursesComponent {
     // }
   }
 
+  toggleForm() {
+      this.showForm = !this.showForm
+  }
+
   editCourse(course: any) {
     this.myCourse = course
     this.editMode = true
@@ -82,10 +88,18 @@ export class CoursesComponent {
     this.initCourse()
   }
 
+  textShowForm() {
+    return this.showForm ? 'Hide': 'Show'
+  }
+
   initCourse() {
     this.myCourse = {
       id: uuidv4(),
       label: ''
     }
+  }
+
+  toggleList(status: boolean) {
+    this.list = status
   }
 }
