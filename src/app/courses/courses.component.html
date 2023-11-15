@@ -8,12 +8,22 @@
 
 <div class="row my-4">
     <div class="col-6 mx-auto">
+
+        <div class="my-2">
+            <input [(ngModel)]="myCourse.label" type="text" class="form-control" placeholder="Tape a label of a course">
+            <div class="d-grid my-2">
+                <button *ngIf="editMode" (click)="updateCourse()" class="btn btn-warning">Update a Course</button>
+                <button *ngIf="!editMode" (click)="addCourse()" class="btn btn-primary">Add a Course</button>
+            </div>
+        </div>
+
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let course of listCourses">
                 {{ course.label }}
+                <p>{{ course.id }}</p>
                 <div class="my-2 text-end">
-                    <button class="btn-sm me-2 btn btn-warning">Edit</button>
-                    <button class="btn-sm btn btn-danger">Delete</button>
+                    <button (click)="editCourse(course)" class="btn-sm me-2 btn btn-warning">Edit</button>
+                    <button (click)="deleteCourse(course)" class="btn-sm btn btn-danger">Delete</button>
                 </div>
             </li>
         </ul>
