@@ -1,0 +1,44 @@
+
+<!-- (.row.my-5>.col-6>h1{List of posts}^+.col-6.text-end>button.btn.btn-primary{Add a Post})+.row.m-5>col-12>table.table-striped>(thead>tr>th{Id}+th{Title}+th{Body}+th)+(tbody>tr>td*3+td>(button.btn.btn-sm.btn-primary>i.fa.fa-power-off)+(button.btn.btn-sm.btn-warning>i.fa.fa-pencil)+(button.btn.btn-sm.btn-danger>i.fa.fa-trash)) -->
+<div class="row my-5">
+    <div class="col-6">
+        <h1>List of posts</h1>
+    </div>
+    <div class="col-6 text-end">
+        <a routerLink="/blog/create" class="btn btn-primary">Add a Post</a>
+    </div>
+</div>
+
+<div class="row m-5" *ngIf="load || errorMessage">
+    <div class="col-6 mx-auto">
+        <div *ngIf="load" class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+        <div *ngIf="errorMessage" class="alert alert-danger text-center">{{ errorMessage }}</div>
+    </div>
+</div>
+
+<div class="row m-5" *ngIf="!load && !errorMessage">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let post of listPosts">
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.body }}</td>
+                    <td class="text-end" nowrap>
+                        <button class="btn btn-sm btn-primary me-2"><i class="fa fa-power-off"></i></button>
+                        <a [routerLink]="['/blog', 'edit', post.id]" class="btn me-2 btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

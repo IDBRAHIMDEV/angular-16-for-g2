@@ -13,6 +13,15 @@ import { TableUserComponent } from './table-user/table-user.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ListPostsComponent } from './list-posts/list-posts.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { ShowPostComponent } from './show-post/show-post.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +34,21 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     TableUserComponent,
     ListProductsComponent,
-    CoursesComponent
+    CoursesComponent,
+    ListPostsComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    PageNotFoundComponent,
+    CreatePostComponent,
+    EditPostComponent,
+    ShowPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
