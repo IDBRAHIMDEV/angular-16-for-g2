@@ -4,20 +4,34 @@
     <div class="col-6">
         <h1>Create a Post</h1>
     </div>
-    <div class="col-6 text-end"><a routerLink="/blog" class="btn btn-link">Back to List</a></div>
+    <div class="col-6 text-end"><a routerLink="/blog" class="btn btn-primary">Back to List</a></div>
 </div>
 <div class="row my-5">
     <div class="col-6 mx-auto">
-        <div class="form-group my-3">
-            <label for="title">Title</label>
-            <input [(ngModel)]="myPost.title" type="text" name="" placeholder="Title of a post" id="title" class="form-control">
-        </div>
-        <div class="form-group my-3">
-            <label for="description">Description</label>
-            <textarea [(ngModel)]="myPost.body" name="" id="description" placeholder="Description for this post" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-        <div class="d-grid my-2">
-            <button (click)="createPost()" class="btn btn-primary"><i class="fa fa-send"></i> Create a Post</button>
-        </div>
+
+        <form #formPost="ngForm" (submit)="createPost(formPost)">
+            <div class="form-group my-3">
+                <label for="title">Title</label>
+                <input required minlength="3" maxlength="10" #title="ngModel" pattern="[a-zA-Z0-9 ]*" (change)="info(title)" ngModel type="text" name="title" placeholder="Title of a post" id="title" class="form-control">
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+                    <div *ngIf="title.errors?.['required']">This field is Required !</div>
+                    <div *ngIf="title.errors?.['minlength']">This Field should be great than 3 cataraters</div>
+                    <div *ngIf="title.errors?.['maxlength']">This Field should be less than 10 cataraters</div>
+                    <div *ngIf="title.errors?.['pattern']">This Field is not an alpha numeric !</div>
+                    <!-- <div *ngIf="title.errors?.['email']">This Field is not an Email Address</div> -->
+                </div>
+            </div>
+            <div class="form-group my-3">
+                <label for="description">Description</label>
+                <textarea required minlength="10" (change)="info(description)" #description="ngModel" ngModel name="body" id="description" placeholder="Description for this post" cols="30" rows="10" class="form-control"></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                    <div *ngIf="description.errors?.['required']">The description is Required</div>
+                    <div *ngIf="description.errors?.['minlength']">Description should be great than {{ description.errors?.['minlength']?.['actualLength'] }} / {{ description.errors?.['minlength']?.['requiredLength'] }} caraters</div>
+                </div>
+            </div>
+            <div class="d-grid my-2">
+                <button [disabled]="formPost.invalid" class="btn btn-primary"><i class="fa fa-send"></i> Create a Post</button>
+            </div>
+        </form>
     </div>
 </div>
