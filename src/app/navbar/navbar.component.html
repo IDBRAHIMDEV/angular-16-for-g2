@@ -25,8 +25,14 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/contact">Contact</a>
                 </li>
-                
             </ul>
+            
+            <ul class="navbar-nav ml-auto">
+                <li *ngIf="!userToken" class="nav-item"><a routerLink="/auth/login" class="nav-link">Login</a></li>
+                <li *ngIf="userToken" class="nav-item"><a routerLink="/admin/dashboard" class="nav-link">Dashboard</a></li>
+                <li *ngIf="userToken" class="nav-item"><button (click)="logout()" class="nav-link">Logout</button></li>
+            </ul>
+
             
         </div>
   </div>

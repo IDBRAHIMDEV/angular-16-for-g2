@@ -1,3 +1,4 @@
+import { UserBehaviourService } from './../../../services/user-behaviour.service';
 import { Component, inject } from '@angular/core';
 import { FormGroup, UntypedFormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -14,6 +15,7 @@ export class LoginComponent {
 
   router = inject(Router)
   authService = inject(AuthService)
+  userBehaviour = inject(UserBehaviourService)
 
   userAndToken: UserAndToken | null = null
 
@@ -33,6 +35,7 @@ export class LoginComponent {
       next: (res) => {
         this.userAndToken = res
         localStorage.setItem('token', this.userAndToken.token)
+        this.userBehaviour.setTokenApp(res.token)
         this.router.navigateByUrl('/admin/dashboard')
       },
       error: (err) => {
