@@ -23,6 +23,8 @@ const routes: Routes = [
   {path: 'blog/:id', component: ShowPostComponent },
   {path: 'store', component: ListProductsComponent },
   {path: 'elearning', component: CoursesComponent },
+  { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: '**', component: PageNotFoundComponent },
 ];
 

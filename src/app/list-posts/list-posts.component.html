@@ -3,6 +3,8 @@
 <div class="row my-5">
     <div class="col-6">
         <h1>List of posts</h1>
+        <p>{{ currentData | date: 'dd/MM/yyyy h:m:s' }}</p>
+        <em>{{ price | currency:'GBP':'symbol':'1.3-3' }}</em>
     </div>
     <div class="col-6 text-end">
         <a routerLink="/blog/create" class="btn btn-primary">Add a Post</a>
@@ -30,8 +32,8 @@
             <tbody>
                 <tr *ngFor="let post of listPosts">
                     <td>{{ post.id }}</td>
-                    <td>{{ post.title }}</td>
-                    <td>{{ post.body }}</td>
+                    <td>{{ post.title | uppercase | titlecase }}</td>
+                    <td>{{ post.body | resume: 3 }}</td>
                     <td class="text-end" nowrap>
                         <button class="btn btn-sm btn-primary me-2"><i class="fa fa-power-off"></i></button>
                         <a [routerLink]="['/blog', 'edit', post.id]" class="btn me-2 btn-sm btn-warning"><i class="fa fa-pencil"></i></a>

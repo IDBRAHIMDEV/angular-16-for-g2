@@ -12,7 +12,7 @@ import { CardComponent } from './card/card.component';
 import { TableUserComponent } from './table-user/table-user.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { CoursesComponent } from './courses/courses.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListPostsComponent } from './list-posts/list-posts.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +22,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CreatePostComponent } from './create-post/create-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { ShowPostComponent } from './show-post/show-post.component';
+import { ResumePipe } from './pipes/resume.pipe';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -42,13 +45,17 @@ import { ShowPostComponent } from './show-post/show-post.component';
     PageNotFoundComponent,
     CreatePostComponent,
     EditPostComponent,
-    ShowPostComponent
+    ShowPostComponent,
+    ResumePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    AuthenticationModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

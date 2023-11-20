@@ -10,6 +10,10 @@ import { Component, OnInit, inject } from '@angular/core';
 export class ListPostsComponent implements OnInit {
 
   postService = inject(PostService)
+
+  currentData = new Date()
+
+  price: number = 234.36454446
  
   listPosts: Post[] = []
 

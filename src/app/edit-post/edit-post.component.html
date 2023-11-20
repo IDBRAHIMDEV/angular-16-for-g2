@@ -8,16 +8,38 @@
 </div>
 <div class="row my-5">
     <div class="col-6 mx-auto">
-        <div class="form-group my-3">
-            <label for="title">Title</label>
-            <input [(ngModel)]="myPost.title" type="text" name="" placeholder="Title of a post" id="title" class="form-control">
-        </div>
-        <div class="form-group my-3">
-            <label for="description">Description</label>
-            <textarea [(ngModel)]="myPost.body" name="" id="description" placeholder="Description for this post" cols="30" rows="10" class="form-control"></textarea>
-        </div>
-        <div class="d-grid my-2">
-            <button class="btn btn-warning"><i class="fa fa-refresh"></i> Update a Post</button>
-        </div>
+        <form [formGroup]="formPost" (submit)="updatePost()">
+            <div class="form-group my-3">
+                <label for="title">Title</label>
+                <input formControlName="title" type="text" placeholder="Title of a post" id="title" class="form-control">
+                <div class="alert alert-danger" *ngIf="formPost.get('title')?.touched && formPost.get('title')?.invalid">
+                    <div *ngIf="formPost.get('title')?.errors?.['required']">This field is Required !</div>
+                    <div *ngIf="formPost.get('title')?.errors?.['minlength']">This Field should be great than 3 cataraters</div>
+                    <div *ngIf="formPost.get('title')?.errors?.['maxlength']">This Field should be less than 10 cataraters</div>
+                    <div *ngIf="formPost.get('title')?.errors?.['pattern']">This Field is not an alpha numeric !</div>
+                    <!-- <div *ngIf="title.errors?.['email']">This Field is not an Email Address</div> -->
+                </div>
+            </div>
+            <div class="form-group my-3">
+                <label for="description">Description</label>
+                <textarea formControlName="body" id="description" placeholder="Description for this post" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group my-3">
+                <label for="category">Category</label>
+                <select formControlName="category" id="category" class="form-control">
+                    <option value="" selected="true">Select a category</option>
+                    <option *ngFor="let category of categories" [ngValue]="category">{{ category.label }}</option>
+                </select>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input id="active" formControlName="active" class="form-check-input" type="checkbox">
+                <label class="form-check-label" for="active">Active</label>
+              </div>
+            <div class="d-grid my-2">
+                <button [disabled]="formPost.invalid" class="btn btn-warning"><i class="fa fa-refresh"></i> Update a Post</button>
+            </div>
+        </form>
     </div>
 </div>

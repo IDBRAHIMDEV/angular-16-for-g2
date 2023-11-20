@@ -6,8 +6,8 @@
       "id": 1
     },
     {
-      "title": "Bright Coding",
-      "body": "my description ",
+      "title": "Bright Cod",
+      "body": "my description  updated",
       "id": 2
     },
     {
@@ -41,6 +41,10 @@
       "id": 8
     }
   ],
-  "categories": [],
+  "categories": [
+    {"id": 1, "label": "IT"},
+    {"id": 2, "label": "Network"},
+    {"id": 3, "label": "Development"}
+  ],
   "users": []
 }
