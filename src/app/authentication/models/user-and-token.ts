@@ -7,4 +7,6 @@ export interface UserAndToken {
     gender: string;
     image: string;
     token: string;
+    iat?: Date;
+    exp?: Date;
 }

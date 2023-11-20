@@ -35,7 +35,12 @@ export class LoginComponent {
       next: (res) => {
         this.userAndToken = res
         localStorage.setItem('token', this.userAndToken.token)
-        this.userBehaviour.setTokenApp(res.token)
+
+        const token = res.token
+        const payload = token.split('.')[1]
+        const playloadData: string = atob(payload) 
+        this.userBehaviour.setUserApp(JSON.parse(playloadData))
+        this.userBehaviour.setTokenApp(token)
         this.router.navigateByUrl('/admin/dashboard')
       },
       error: (err) => {

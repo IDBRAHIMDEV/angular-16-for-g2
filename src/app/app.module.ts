@@ -13,7 +13,7 @@ import { TableUserComponent } from './table-user/table-user.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListPostsComponent } from './list-posts/list-posts.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -25,6 +25,7 @@ import { ShowPostComponent } from './show-post/show-post.component';
 import { ResumePipe } from './pipes/resume.pipe';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AdminModule } from './admin/admin.module';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { AdminModule } from './admin/admin.module';
     AuthenticationModule,
     AdminModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
